@@ -130,4 +130,21 @@ MemberStack.onReady.then(async function (member) {
         followedItem.css('display', 'none');
     });
 
+
+    // adding and displaying achievements
+    $('#welcome-badge').show()
+
+    if (followitemsNum > 5) {
+        $('#tool-master').show();
+    }
+
+    if (completeitemsNum > 5) {
+        $('#tool-master').show();
+    }
+
+    if (introduction in dashActions) {
+        $('#friendly-member').show(); 
+    }
+
+
 });
