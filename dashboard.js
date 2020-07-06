@@ -135,7 +135,7 @@ MemberStack.onReady.then(async function (member) {
     }
 
     if (completedList.length > 5) {
-        $('#tool-master').show();
+        $('#5-lessons-complete').show();
     }
 
     if ('introduction' in dashActions) {
