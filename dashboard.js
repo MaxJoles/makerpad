@@ -1,6 +1,4 @@
 MemberStack.onReady.then(async function (member) {
-
-    await loader(); // wait for Finsweet loadmore to execute
     const metadata = await member.getMetaData();
 
 
