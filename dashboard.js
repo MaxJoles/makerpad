@@ -1,4 +1,4 @@
-MemberStack.onReady.then(async function (member) {
+MemberStack.onReady.then(function (member) {
     const metadata = await member.getMetaData();
 
 
