@@ -130,15 +130,15 @@ MemberStack.onReady.then(async function (member) {
     // adding and displaying achievements
     $('#welcome-badge').show()
 
-    if (followitemsNum > 5) {
+    if (followList.length > 5) {
         $('#tool-master').show();
     }
 
-    if (completeitemsNum > 5) {
+    if (completedList.length > 5) {
         $('#tool-master').show();
     }
 
-    if (introduction in dashActions) {
+    if ('introduction' in dashActions) {
         $('#friendly-member').show();
     }
 
