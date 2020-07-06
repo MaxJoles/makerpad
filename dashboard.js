@@ -92,6 +92,8 @@ MemberStack.onReady.then(async function (member) {
     }
 
 
+
+
     // remove saved item
     $('.cc-remove-saved').click(function (e) {
         e.preventDefault();
