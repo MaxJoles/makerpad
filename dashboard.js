@@ -1,5 +1,5 @@
 MemberStack.onReady.then(async function (member) {
-    
+
     await loader(); // wait for Finsweet loadmore to execute
     const metadata = await member.getMetaData();
 
@@ -11,15 +11,11 @@ MemberStack.onReady.then(async function (member) {
     if (dashActions) {
         console.log("executed");
         $('.cc-complete-checkbox').each((i, item) => {
-            console.log(item);
             var actionName = $(item).attr('id');
-            console.log(actionName);
             if (actionName in dashActions) {
-                console.log("alread exists");
                 $(item).hide();
             }
             else {
-                console.log('does not exist');
                 $(item).siblings('.cc-completed-check').hide();
             }
         });
@@ -143,7 +139,7 @@ MemberStack.onReady.then(async function (member) {
     }
 
     if (introduction in dashActions) {
-        $('#friendly-member').show(); 
+        $('#friendly-member').show();
     }
 
 
