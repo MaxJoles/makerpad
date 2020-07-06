@@ -1,5 +1,6 @@
 MemberStack.onReady.then(async function (member) {
-    await loader();
+    
+    await loader(); // wait for Finsweet loadmore to execute
     const metadata = await member.getMetaData();
 
 
@@ -76,10 +77,10 @@ MemberStack.onReady.then(async function (member) {
 
     // filter for followed items
     if (metadata.followitemsNum) {
-        $('.cc-following-count').text(metadata.followitemsNum)
+        $('.cc-follow-count').text(metadata.followitemsNum)
     }
     else {
-        $('.cc-following-count').text(0);
+        $('.cc-follow-count').text(0);
     }
 
     if (followList) {
@@ -122,7 +123,7 @@ MemberStack.onReady.then(async function (member) {
         const followedName = followedItem.find('.cc-filter-slug').text();
         followList.splice(followList.indexOf($.trim(followedName)), 1);
         metadata.followitemsNum = followList.length;
-        $('.cc-following-count').text(metadata.followitemsNum);
+        $('.cc-follow-count').text(metadata.followitemsNum);
         member.updateMetaData(metadata);
         followedItem.css('display', 'none');
     });
