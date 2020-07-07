@@ -1,6 +1,6 @@
 // Follow products
 const itemSlug = '{{wf {&quot;path&quot;:&quot;slug&quot;,&quot;type&quot;:&quot;PlainText&quot;\} }}';
-console.log(itemSl)
+console.log(itemSlug);
 MemberStack.onReady.then(async function (member) {
   if (member.loggedIn) {
     const metadata = await member.getMetaData();
