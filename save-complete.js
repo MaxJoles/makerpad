@@ -1,5 +1,6 @@
 // adds item to metadata lists
-const itemSlug = '{{wf {&quot;path&quot;:&quot;slug&quot;,&quot;type&quot;:&quot;PlainText&quot;\} }}'
+const itemSlug = '{{wf {&quot;path&quot;:&quot;slug&quot;,&quot;type&quot;:&quot;PlainText&quot;\} }}';
+console.log(itemSlug);
 MemberStack.onReady.then(async function (member) {
   if (member.loggedIn) {
     const metadata = await member.getMetaData();
