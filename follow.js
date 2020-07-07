@@ -1,5 +1,7 @@
 // Follow products
-const itemSlug = '{{wf {&quot;path&quot;:&quot;slug&quot;,&quot;type&quot;:&quot;PlainText&quot;\} }}';
+var url = window.location.pathname;
+const itemSlug = url.substring(url.lastIndexOf('/')+1);
+
 console.log(itemSlug);
 MemberStack.onReady.then(async function (member) {
   if (member.loggedIn) {
