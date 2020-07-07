@@ -22,7 +22,7 @@ MemberStack.onReady.then(async function (member) {
       if (metadata.followList.indexOf(itemSlug) === -1) {
         metadata.followList.push(itemSlug);
         const followNum = metadata.followList.length || 0;
-        metadata.followitemsNum = followNum;
+        metadata.followItemsNum = followNum;
         member.updateMetaData(metadata);
         $('.cc-follow-count').text(followNum);
         $('.cc-follow-product.cc-checked').show();

@@ -45,7 +45,7 @@ MemberStack.onReady.then(async function (member) {
       if (metadata.completedList.indexOf(itemSlug) === -1) {
         metadata.completedList.push(itemSlug);
         const completeNum = metadata.completedList.length || 0;
-        metadata.completeitemsNum = completeNum;
+        metadata.completeItemsNum = completeNum;
         member.updateMetaData(metadata);
         $('.cc-completed-counter').text(completeNum);
         $('.cc-mark-as-complete.cc-checked').show();

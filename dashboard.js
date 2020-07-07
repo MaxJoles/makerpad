@@ -54,8 +54,8 @@ MemberStack.onReady.then(async function (member) {
 
 
     // filter for completed items
-    if (metadata.completeitemsNum) {
-        $('.cc-completed-count').text(metadata.completeitemsNum)
+    if (metadata.completeItemsNum) {
+        $('.cc-completed-count').text(metadata.completeItemsNum)
     }
     else {
         $('.cc-completed-count').text(0);
@@ -70,8 +70,8 @@ MemberStack.onReady.then(async function (member) {
     }
 
     // filter for followed items
-    if (metadata.followitemsNum) {
-        $('.cc-follow-count').text(metadata.followitemsNum)
+    if (metadata.followItemsNum) {
+        $('.cc-follow-count').text(metadata.followItemsNum)
     }
     else {
         $('.cc-follow-count').text(0);
@@ -106,8 +106,8 @@ MemberStack.onReady.then(async function (member) {
         const completedItem = $(this).closest('.cc-meta-item');
         const completeName = completedItem.find('.cc-filter-slug').text();
         completedList.splice(completedList.indexOf($.trim(completeName)), 1);
-        metadata.completeitemsNum = completedList.length;
-        $('.cc-completed-count').text(metadata.completeitemsNum);
+        metadata.completeItemsNum = completedList.length;
+        $('.cc-completed-count').text(metadata.completeItemsNum);
         member.updateMetaData(metadata);
         completedItem.css('display', 'none');
     });
@@ -118,8 +118,8 @@ MemberStack.onReady.then(async function (member) {
         const followedItem = $(this).closest('.cc-meta-item');
         const followedName = followedItem.find('.cc-filter-slug').text();
         followList.splice(followList.indexOf($.trim(followedName)), 1);
-        metadata.followitemsNum = followList.length;
-        $('.cc-follow-count').text(metadata.followitemsNum);
+        metadata.followItemsNum = followList.length;
+        $('.cc-follow-count').text(metadata.followItemsNum);
         member.updateMetaData(metadata);
         followedItem.css('display', 'none');
     });
