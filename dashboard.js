@@ -54,8 +54,8 @@ MemberStack.onReady.then(async function (member) {
 
 
     // filter for completed items
-    if (metadata.completeItemsNum) {
-        $('.cc-completed-count').text(metadata.completeItemsNum)
+    if (metadata.completedItemsNum) {
+        $('.cc-completed-count').text(metadata.completedItemsNum)
     }
     else {
         $('.cc-completed-count').text(0);
@@ -80,7 +80,7 @@ MemberStack.onReady.then(async function (member) {
     if (followList) {
         $('.cc-meta-item.product .cc-filter-slug').each((i, item) => {
             if (followList.indexOf($.trim($(item).text())) !== -1) {
-                $(item).closest('.cc-meta-item.product').appendTo('.cc-following-list');
+                $(item).closest('.cc-meta-item.product').appendTo('.cc-follow-list');
             }
         });
     }
@@ -106,8 +106,8 @@ MemberStack.onReady.then(async function (member) {
         const completedItem = $(this).closest('.cc-meta-item');
         const completeName = completedItem.find('.cc-filter-slug').text();
         completedList.splice(completedList.indexOf($.trim(completeName)), 1);
-        metadata.completeItemsNum = completedList.length;
-        $('.cc-completed-count').text(metadata.completeItemsNum);
+        metadata.completedItemsNum = completedList.length;
+        $('.cc-completed-count').text(metadata.completedItemsNum);
         member.updateMetaData(metadata);
         completedItem.css('display', 'none');
     });
