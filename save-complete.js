@@ -7,14 +7,13 @@ MemberStack.onReady.then(async function (member) {
     const savedNum = metadata.savedList.length || 0;
     $('.cc-saved-counter').text(savedNum);
     metadata.completedList = metadata.completedList || [];
-    const completenum = metadata.completedList.length || 0;
-    $('.cc-completed-counter').text(completenum);
+    const completeNum = metadata.completedList.length || 0;
+    $('.cc-completed-counter').text(completeNum);
 
 
     // show/hide saved buttons
     if (metadata.savedList.indexOf(itemSlug) === -1) {
       $('.cc-save-item.cc-checked').hide();
-      console.log("not in watchlist");
     }
     else {
       console.log("in watchlist");
@@ -24,7 +23,6 @@ MemberStack.onReady.then(async function (member) {
     // show/hide watchlist buttons
     if (metadata.completedList.indexOf(itemSlug) === -1) {
       $('.cc-mark-as-complete.cc-checked').hide();
-      console.log("not completed");
     }
     else {
       console.log("completed");
@@ -42,13 +40,14 @@ MemberStack.onReady.then(async function (member) {
         $('.cc-save-item.cc-unchecked').hide();
       }
     });
+    
     $('.cc-mark-as-complete').click(function () {
       if (metadata.completedList.indexOf(itemSlug) === -1) {
         metadata.completedList.push(itemSlug);
-        const completenum = metadata.completedList.length || 0;
-        metadata.completeitemsNum = completenum;
+        const completeNum = metadata.completedList.length || 0;
+        metadata.completeitemsNum = completeNum;
         member.updateMetaData(metadata);
-        $('.cc-completed-counter').text(completenum);
+        $('.cc-completed-counter').text(completeNum);
         $('.cc-mark-as-complete.cc-checked').show();
         $('.cc-mark-as-complete.cc-unchecked').hide();
       }
