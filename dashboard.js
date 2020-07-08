@@ -18,7 +18,7 @@
 
 
 
-setTimeout(() => {
+//setTimeout(() => {
 MemberStack.onReady.then(async function (member) {
     const metadata = await member.getMetaData();
 
@@ -162,4 +162,4 @@ MemberStack.onReady.then(async function (member) {
 
 
 });
-}, 3000);
+//}, 3000);
