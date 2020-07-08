@@ -163,4 +163,4 @@ MemberStack.onReady.then(async function (member) {
 
 
 });
-}, 1000);
+}, 3000);
