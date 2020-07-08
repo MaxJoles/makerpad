@@ -1,10 +1,11 @@
 // Finsweet code that loads all hidden CMS items. This should always run first
 (function () {
+    var loadMoreButton = ".cc-load-more";
     var load1 = new FsLibrary('.cc-load-1');
 
 
     load1.loadmore({
-        button: ".cc-load-more", // class of Webflow Pagination button
+        button: loadMoreButton, // class of Webflow Pagination button
         loadAll: true 
     })
 
