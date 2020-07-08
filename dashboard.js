@@ -1,33 +1,27 @@
 // Finsweet code that loads all hidden CMS items. This should always run first
 (function () {
-    var loadMoreButton = ".cc-load-more"; // class of Webflow Pagination button
-    var load1 = new FsLibrary('.cc-load-1'); // New library targeting colleciton list
+    var loadMoreButton = ".cc-load-more";
+    var load1 = new FsLibrary('.cc-load-1');
     var load2 = new FsLibrary('.cc-load-2');
 
 
     load1.loadmore({
-        button: loadMoreButton,
-        loadAll: true
+        button: loadMoreButton, // class of Webflow Pagination button
+        loadAll: true 
     })
 
     load2.loadmore({
-        button: loadMoreButton,
-        loadAll: true
+        button: loadMoreButton, // class of Webflow Pagination button
+        loadAll: true 
     })
 
 })();
 
 
 
-// Begin member specific code
-
-
+setTimeout(() => {
 MemberStack.onReady.then(async function (member) {
     const metadata = await member.getMetaData();
-
-    if (member["profile-link"]) {
-        $('cc-profile-link').show();
-    };
 
     // Track dashboard actions
     metadata.dashActions = metadata.dashActions || {};
@@ -56,21 +50,6 @@ MemberStack.onReady.then(async function (member) {
         member.updateMetaData(metadata);
     });
 
-    // adding and displaying achievements
-    $('#welcome-badge').show()
-
-    if (followList.length > 5) {
-        $('#tool-master').show();
-    }
-
-    if (completedList.length > 5) {
-        $('#5-lessons-complete').show();
-    }
-
-    if ('introduction' in dashActions) {
-        $('#friendly-member').show();
-    }
-
 
     // Display saved and completed items in dashboard
 
@@ -78,59 +57,54 @@ MemberStack.onReady.then(async function (member) {
     const completedList = metadata.completedList;
     const followList = metadata.followList;
 
+    // filter for saved items
+    if (metadata.savedItemsNum) {
+        $('.cc-saved-count').text(metadata.savedItemsNum)
+    }
+    else {
+        $('.cc-saved-count').text(0);
+    }
+
+    if (savedList) {
+        $('.cc-meta-item.cc-saved .cc-filter-slug').each((i, item) => {
+            if (savedList.indexOf($.trim($(item).text())) !== -1) {
+                $(item).closest('.cc-meta-item.cc-saved').appendTo('.cc-saved-list');
+            }
+        });
+    }
 
 
-    setTimeout(() => {
+    // filter for completed items
+    if (metadata.completedItemsNum) {
+        $('.cc-completed-count').text(metadata.completedItemsNum)
+    }
+    else {
+        $('.cc-completed-count').text(0);
+    }
 
-        // filter for saved items
-        if (metadata.savedItemsNum) {
-            $('.cc-saved-count').text(metadata.savedItemsNum)
-        }
-        else {
-            $('.cc-saved-count').text(0);
-        }
+    if (completedList) {
+        $('.cc-meta-item.cc-completed .cc-filter-slug').each((i, item) => {
+            if (completedList.indexOf($.trim($(item).text())) !== -1) {
+                $(item).closest('.cc-meta-item.cc-completed').appendTo('.cc-completed-list');
+            }
+        });
+    }
 
-        if (savedList) {
-            $('.cc-meta-item.cc-saved .cc-filter-slug').each((i, item) => {
-                if (savedList.indexOf($.trim($(item).text())) !== -1) {
-                    $(item).closest('.cc-meta-item.cc-saved').appendTo('.cc-saved-list');
-                }
-            });
-        }
+    // filter for followed items
+    if (metadata.followItemsNum) {
+        $('.cc-follow-count').text(metadata.followItemsNum)
+    }
+    else {
+        $('.cc-follow-count').text(0);
+    }
 
-
-        // filter for completed items
-        if (metadata.completedItemsNum) {
-            $('.cc-completed-count').text(metadata.completedItemsNum)
-        }
-        else {
-            $('.cc-completed-count').text(0);
-        }
-
-        if (completedList) {
-            $('.cc-meta-item.cc-completed .cc-filter-slug').each((i, item) => {
-                if (completedList.indexOf($.trim($(item).text())) !== -1) {
-                    $(item).closest('.cc-meta-item.cc-completed').appendTo('.cc-completed-list');
-                }
-            });
-        }
-
-        // filter for followed items
-        if (metadata.followItemsNum) {
-            $('.cc-follow-count').text(metadata.followItemsNum)
-        }
-        else {
-            $('.cc-follow-count').text(0);
-        }
-
-        if (followList) {
-            $('.cc-meta-item.product .cc-filter-slug').each((i, item) => {
-                if (followList.indexOf($.trim($(item).text())) !== -1) {
-                    $(item).closest('.cc-meta-item.product').appendTo('.cc-follow-list');
-                }
-            });
-        }
-    }, 2000);
+    if (followList) {
+        $('.cc-meta-item.product .cc-filter-slug').each((i, item) => {
+            if (followList.indexOf($.trim($(item).text())) !== -1) {
+                $(item).closest('.cc-meta-item.product').appendTo('.cc-follow-list');
+            }
+        });
+    }
 
 
 
@@ -172,6 +146,21 @@ MemberStack.onReady.then(async function (member) {
     });
 
 
+    // adding and displaying achievements
+    $('#welcome-badge').show()
+
+    if (followList.length > 5) {
+        $('#tool-master').show();
+    }
+
+    if (completedList.length > 5) {
+        $('#5-lessons-complete').show();
+    }
+
+    if ('introduction' in dashActions) {
+        $('#friendly-member').show();
+    }
 
 
 });
+}, 2000);
