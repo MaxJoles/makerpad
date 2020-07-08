@@ -1,17 +1,17 @@
 // Finsweet code that loads all hidden CMS items. This should always run first
 (function () {
-    var loadMoreButton = ".cc-load-more";
-    var load1 = new FsLibrary('.cc-load-1');
+    var loadMoreButton = ".cc-load-more"; // class of Webflow Pagination button
+    var load1 = new FsLibrary('.cc-load-1'); // New library targeting colleciton list
     var load2 = new FsLibrary('.cc-load-2');
 
 
     load1.loadmore({
-        button: loadMoreButton, // class of Webflow Pagination button
+        button: loadMoreButton,
         loadAll: true
     })
 
     load2.loadmore({
-        button: loadMoreButton, // class of Webflow Pagination button
+        button: loadMoreButton,
         loadAll: true
     })
 
@@ -19,10 +19,15 @@
 
 
 
-
+// Begin member specific code
 setTimeout(() => {
+
     MemberStack.onReady.then(async function (member) {
         const metadata = await member.getMetaData();
+
+        if (member["profile-link"]) {
+            $('cc-profile-link').show();
+        };
 
         // Track dashboard actions
         metadata.dashActions = metadata.dashActions || {};
@@ -164,4 +169,5 @@ setTimeout(() => {
 
 
     });
+
 }, 2000);
