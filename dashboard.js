@@ -1,24 +1,3 @@
-// Finsweet code that loads all hidden CMS items. This should always run first
-(function () {
-    var load1 = new FsLibrary('.hidden-list.cc-load-1');
-    var load2 = new FsLibrary('.hidden-list.cc-load-2');
-
-
-    load1.loadmore({
-        button: '.cc-load-more',
-        loadAll: true 
-    })
-
-    load2.loadmore({
-        button: '.cc-load-more',
-        loadAll: true 
-    })
-
-})();
-
-
-
-//setTimeout(() => {
 MemberStack.onReady.then(async function (member) {
     const metadata = await member.getMetaData();
 
@@ -162,4 +141,3 @@ MemberStack.onReady.then(async function (member) {
 
 
 });
-//}, 3000);
