@@ -20,48 +20,67 @@
 
 
 // Begin member specific code
-setTimeout(() => {
-
-    MemberStack.onReady.then(async function (member) {
-        const metadata = await member.getMetaData();
-
-        if (member["profile-link"]) {
-            $('cc-profile-link').show();
-        };
-
-        // Track dashboard actions
-        metadata.dashActions = metadata.dashActions || {};
-        const dashActions = metadata.dashActions;
-
-        if (dashActions) {
-            console.log("executed");
-            $('.cc-complete-checkbox').each((i, item) => {
-                var actionName = $(item).attr('id');
-                if (actionName in dashActions) {
-                    $(item).hide();
-                }
-                else {
-                    $(item).siblings('.cc-completed-check').hide();
-                }
-            });
-        }
 
 
-        $('.cc-complete-checkbox').click(function (e) {
-            e.preventDefault();
-            var actionName = e.target.id;
-            $(e.target).hide();
-            $(e.target).siblings('.cc-completed-check').show();
-            metadata.dashActions[actionName] = 'true';
-            member.updateMetaData(metadata);
+MemberStack.onReady.then(async function (member) {
+    const metadata = await member.getMetaData();
+
+    if (member["profile-link"]) {
+        $('cc-profile-link').show();
+    };
+
+    // Track dashboard actions
+    metadata.dashActions = metadata.dashActions || {};
+    const dashActions = metadata.dashActions;
+
+    if (dashActions) {
+        console.log("executed");
+        $('.cc-complete-checkbox').each((i, item) => {
+            var actionName = $(item).attr('id');
+            if (actionName in dashActions) {
+                $(item).hide();
+            }
+            else {
+                $(item).siblings('.cc-completed-check').hide();
+            }
         });
+    }
 
 
-        // Display saved and completed items in dashboard
+    $('.cc-complete-checkbox').click(function (e) {
+        e.preventDefault();
+        var actionName = e.target.id;
+        $(e.target).hide();
+        $(e.target).siblings('.cc-completed-check').show();
+        metadata.dashActions[actionName] = 'true';
+        member.updateMetaData(metadata);
+    });
 
-        const savedList = metadata.savedList;
-        const completedList = metadata.completedList;
-        const followList = metadata.followList;
+    // adding and displaying achievements
+    $('#welcome-badge').show()
+
+    if (followList.length > 5) {
+        $('#tool-master').show();
+    }
+
+    if (completedList.length > 5) {
+        $('#5-lessons-complete').show();
+    }
+
+    if ('introduction' in dashActions) {
+        $('#friendly-member').show();
+    }
+
+
+    // Display saved and completed items in dashboard
+
+    const savedList = metadata.savedList;
+    const completedList = metadata.completedList;
+    const followList = metadata.followList;
+
+
+
+    setTimeout(() => {
 
         // filter for saved items
         if (metadata.savedItemsNum) {
@@ -111,63 +130,48 @@ setTimeout(() => {
                 }
             });
         }
+    }, 2000);
 
 
 
 
-        // remove saved item
-        $('.cc-remove-saved').click(function (e) {
-            e.preventDefault();
-            const savedItem = $(this).closest('.cc-meta-item');
-            const watchName = savedItem.find('.cc-filter-slug').text();
-            savedList.splice(savedList.indexOf($.trim(watchName)), 1);
-            metadata.savedItemsNum = savedList.length;
-            $('.cc-saved-count').text(metadata.savedItemsNum);
-            member.updateMetaData(metadata);
-            savedItem.css('display', 'none');
-        });
-
-        // remove completed item
-        $('.cc-remove-completed').click(function (e) {
-            e.preventDefault();
-            const completedItem = $(this).closest('.cc-meta-item');
-            const completeName = completedItem.find('.cc-filter-slug').text();
-            completedList.splice(completedList.indexOf($.trim(completeName)), 1);
-            metadata.completedItemsNum = completedList.length;
-            $('.cc-completed-count').text(metadata.completedItemsNum);
-            member.updateMetaData(metadata);
-            completedItem.css('display', 'none');
-        });
-
-        // remove followed item
-        $('.cc-remove-follow').click(function (e) {
-            e.preventDefault();
-            const followedItem = $(this).closest('.cc-meta-item');
-            const followedName = followedItem.find('.cc-filter-slug').text();
-            followList.splice(followList.indexOf($.trim(followedName)), 1);
-            metadata.followItemsNum = followList.length;
-            $('.cc-follow-count').text(metadata.followItemsNum);
-            member.updateMetaData(metadata);
-            followedItem.css('display', 'none');
-        });
-
-
-        // adding and displaying achievements
-        $('#welcome-badge').show()
-
-        if (followList.length > 5) {
-            $('#tool-master').show();
-        }
-
-        if (completedList.length > 5) {
-            $('#5-lessons-complete').show();
-        }
-
-        if ('introduction' in dashActions) {
-            $('#friendly-member').show();
-        }
-
-
+    // remove saved item
+    $('.cc-remove-saved').click(function (e) {
+        e.preventDefault();
+        const savedItem = $(this).closest('.cc-meta-item');
+        const watchName = savedItem.find('.cc-filter-slug').text();
+        savedList.splice(savedList.indexOf($.trim(watchName)), 1);
+        metadata.savedItemsNum = savedList.length;
+        $('.cc-saved-count').text(metadata.savedItemsNum);
+        member.updateMetaData(metadata);
+        savedItem.css('display', 'none');
     });
 
-}, 2000);
+    // remove completed item
+    $('.cc-remove-completed').click(function (e) {
+        e.preventDefault();
+        const completedItem = $(this).closest('.cc-meta-item');
+        const completeName = completedItem.find('.cc-filter-slug').text();
+        completedList.splice(completedList.indexOf($.trim(completeName)), 1);
+        metadata.completedItemsNum = completedList.length;
+        $('.cc-completed-count').text(metadata.completedItemsNum);
+        member.updateMetaData(metadata);
+        completedItem.css('display', 'none');
+    });
+
+    // remove followed item
+    $('.cc-remove-follow').click(function (e) {
+        e.preventDefault();
+        const followedItem = $(this).closest('.cc-meta-item');
+        const followedName = followedItem.find('.cc-filter-slug').text();
+        followList.splice(followList.indexOf($.trim(followedName)), 1);
+        metadata.followItemsNum = followList.length;
+        $('.cc-follow-count').text(metadata.followItemsNum);
+        member.updateMetaData(metadata);
+        followedItem.css('display', 'none');
+    });
+
+
+
+
+});
