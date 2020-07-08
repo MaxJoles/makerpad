@@ -2,7 +2,7 @@ MemberStack.onReady.then(async function (member) {
     const metadata = await member.getMetaData();
 
     if (member["profile-link"]) {
-        $('cc-profile-link').show()
+        $('.cc-profile-link').show()
     }
 
     // Track dashboard actions
