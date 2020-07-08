@@ -1,7 +1,7 @@
 // Finsweet code that loads all hidden CMS items. This should always run first
 (function () {
-    var load1 = new FsLibrary('.cc-load-1');
-    var load2 = new FsLibrary('.cc-load-2');
+    var load1 = new FsLibrary('.hidden-list.cc-load-1');
+    var load2 = new FsLibrary('.hidden-list.cc-load-2');
 
 
     load1.loadmore({
