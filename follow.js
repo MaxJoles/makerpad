@@ -2,7 +2,6 @@
 var url = window.location.pathname;
 const itemSlug = url.substring(url.lastIndexOf('/')+1);
 
-console.log(itemSlug);
 MemberStack.onReady.then(async function (member) {
   if (member.loggedIn) {
     const metadata = await member.getMetaData();
