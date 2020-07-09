@@ -83,9 +83,9 @@ MemberStack.onReady.then(async function (member) {
     }
 
     if (followList) {
-        $('.cc-meta-item.product .cc-filter-slug').each((i, item) => {
+        $('.cc-meta-item.cc-product .cc-filter-slug').each((i, item) => {
             if (followList.indexOf($.trim($(item).text())) !== -1) {
-                $(item).closest('.cc-meta-item.product').appendTo('.cc-follow-list');
+                $(item).closest('.cc-meta-item.cc-product').appendTo('.cc-follow-list');
             }
         });
     }
