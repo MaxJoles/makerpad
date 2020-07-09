@@ -50,9 +50,9 @@ MemberStack.onReady.then(async function (member) {
     }
 
     if (savedList) {
-        $('.cc-meta-item.cc-saved .cc-filter-slug').each((i, item) => {
+        $('.cc-saved .cc-filter-slug').each((i, item) => {
             if (savedList.indexOf($.trim($(item).text())) !== -1) {
-                $(item).closest('.cc-meta-item.cc-saved').appendTo('.cc-saved-list');
+                $(item).closest('.cc-saved').appendTo('.cc-saved-list');
             }
         });
     }
@@ -67,9 +67,9 @@ MemberStack.onReady.then(async function (member) {
     }
 
     if (completedList) {
-        $('.cc-meta-item.cc-completed .cc-filter-slug').each((i, item) => {
+        $('.cc-completed .cc-filter-slug').each((i, item) => {
             if (completedList.indexOf($.trim($(item).text())) !== -1) {
-                $(item).closest('.cc-meta-item.cc-completed').appendTo('.cc-completed-list');
+                $(item).closest('.cc-completed').appendTo('.cc-completed-list');
             }
         });
     }
@@ -83,9 +83,9 @@ MemberStack.onReady.then(async function (member) {
     }
 
     if (followList) {
-        $('.cc-meta-item.cc-follow .cc-filter-slug').each((i, item) => {
+        $('.cc-follow .cc-filter-slug').each((i, item) => {
             if (followList.indexOf($.trim($(item).text())) !== -1) {
-                $(item).closest('.cc-meta-item.cc-follow').appendTo('.cc-follow-list');
+                $(item).closest('.cc-follow').appendTo('.cc-follow-list');
             }
         });
     }
